@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:gdsc_flutter_camp_2023_app_cuatro/config/Theme/theme.dart';
 import 'package:gdsc_flutter_camp_2023_app_cuatro/presentation/providers/news_provider.dart';
+import 'package:gdsc_flutter_camp_2023_app_cuatro/presentation/screens/detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/home',
         routes: {
           '/home': (context) => const HomePage(),
+          '/detail': (context) => const DetailPage(),
         },
         theme: ThemeApp().theme(),
       ),

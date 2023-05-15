@@ -2,6 +2,7 @@
 //
 //     final newsModel = newsModelFromJson(jsonString);
 
+import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
@@ -27,7 +28,7 @@ class NewsModel {
         totalResults: json["totalResults"],
         results:
             List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
-        nextPage: json["nextPage"],
+        nextPage: json["nextPage"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {
@@ -46,7 +47,7 @@ class Result {
   dynamic videoUrl;
   String description;
   String content;
-  DateTime pubDate;
+  String pubDate;
   dynamic imageUrl;
   String sourceId;
   // List<Category> category;
@@ -79,8 +80,10 @@ class Result {
             : ["SIN DATA"],
         videoUrl: json["video_url"],
         description: json["description"] ?? "Sin Descripcion",
-        content: json["content"],
-        pubDate: DateTime.parse(json["pubDate"]),
+        content: json["content"] ?? 'Sin contenido',
+        // pubDate: DateTime.parse(json["pubDate"]),
+        pubDate:
+            DateFormat.yMMMMEEEEd().format(DateTime.parse(json['pubDate'])),
         imageUrl: json["image_url"],
         sourceId: json["source_id"],
         // category: List<Category>.from(
@@ -101,7 +104,7 @@ class Result {
         "video_url": videoUrl,
         "description": description,
         "content": content,
-        "pubDate": pubDate.toIso8601String(),
+        "pubDate": pubDate,
         "image_url": imageUrl,
         "source_id": sourceIdValues.reverse[sourceId],
 

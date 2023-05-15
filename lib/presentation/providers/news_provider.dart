@@ -1,8 +1,9 @@
 import 'package:gdsc_flutter_camp_2023_app_cuatro/data/models/news_model.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
-// https://newsdata.io/api/1/news?apikey=pub_218958cce13436c0fdce02108dfa64926ebcd&language=en
+import 'package:flutter/material.dart';
+// import 'package:http/http.dart' as http;
+
+import 'package:dio/dio.dart';
 
 String _language = 'language=en';
 String _apiKey = 'apikey=pub_218958cce13436c0fdce02108dfa64926ebcd';
@@ -18,12 +19,21 @@ class NewsProvider extends ChangeNotifier {
     getNews();
   }
 
+  final dio = Dio();
+
+  // getNews() async {
+  //   final response = await http.get(Uri.parse(url));
+
+  //   final resp = newsModelFromJson(response.body);
+
+  //   newsList.addAll(resp.results);
+  //   notifyListeners();
+  // }
+
   getNews() async {
-    final response = await http.get(Uri.parse(url));
-
-    final resp = newsModelFromJson(response.body);
-
-    newsList.addAll(resp.results);
+    final response = await dio.get(url);
+    final respResult = NewsModel.fromJson(response.data);
+    newsList.addAll(respResult.results);
     notifyListeners();
   }
 }
