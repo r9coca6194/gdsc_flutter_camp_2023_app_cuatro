@@ -1,4 +1,4 @@
-# gdsc_flutter_camp_2023_app_cuatro
+# GDSC - Flutter Camp 2023 - App Cuatro
 
 A new Flutter project.
 
